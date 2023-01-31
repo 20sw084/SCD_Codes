@@ -1,0 +1,9 @@
+#!/bin/bash
+command=/user/bin/tree
+if [ -f $command ]
+then 
+echo "Available.."
+else
+echo "Installing now.."
+sudo yum install -y tree
+fi

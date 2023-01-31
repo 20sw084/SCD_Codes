@@ -1,0 +1,13 @@
+#!/bin/bash
+if [ $# -eq 0 ]
+then
+echo "$0 : No Argumentsss"
+exit 1
+elif [ $# -gt 2 ]
+then
+echo "$0 : Many Argumentss"
+exit 1
+else
+echo "We have got some Argumentss"
+fi
+
