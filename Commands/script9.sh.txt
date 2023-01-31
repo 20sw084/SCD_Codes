@@ -1,0 +1,44 @@
+#!/bin/bash
+echo "Choose your favourite distribution of linux"
+echo "1. Debian"
+echo "2. Mint"
+echo "3. Ubuntu"
+echo "4. Arch"
+echo "5. Kali"
+echo "6. CentOS"
+echo "7. POP-OS"
+
+read user_option
+
+if [ $user_option -eq 1 ]
+then 
+echo 'Debian is good one'
+
+elif [ $user_option -eq 2 ]
+then 
+echo 'Mint is good one'
+
+elif [ $user_option -eq 3 ]
+then
+echo "Ubuntu is good one"
+
+elif [ $user_option -eq 4 ]
+then 
+echo "Arch is good one"
+
+elif [ $user_option -eq 5 ]
+then 
+echo "Kali is good one"
+
+elif [ $user_option -eq 6 ]
+then 
+echo "CentOS is good one"
+
+elif [ $user_option -eq 7 ]
+then 
+echo "Pop-OS is good one"
+
+else
+echo "Invalid Option"
+
+fi
