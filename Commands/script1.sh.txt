@@ -1,0 +1,4 @@
+#!/bin/bash
+echo "Welcome to Bash Scripting"
+echo "Script is automatically executed commands/certain tasks. With extension .sh"
+echo "#!/bin/bash is called Sheebang which instructs OS that given below commands found at bash(Given Path)."
