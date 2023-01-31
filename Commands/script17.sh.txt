@@ -1,0 +1,25 @@
+#!/bin/bash
+echo "Mu favourite distro of the linux is"
+echo "1.Arch"
+echo "2.Mint"
+echo "3.Ubundu"
+echo "4.Kali"
+read distro
+while [ $distro -ne 5 ]
+do
+if [ $distro -eq 1 ]
+then
+echo "Arch"
+elif [ $distro -eq 2 ]
+then
+echo "Mint"
+elif [ $distro -eq 3 ]
+then
+echo "Ubuntu"
+elif [ $distro -eq 4 ]
+then
+echo "Kali"
+else
+echo "Invalid Input"
+fi
+done
