@@ -1,0 +1,11 @@
+#!/bin/bash
+path=~/file
+if [ -f $path ]
+then
+echo "I m File"
+elif [ -d $path ]
+then
+echo "I m Directory"
+else
+echo "Unknown Behaviour/ Doesnt Exists"
+fi

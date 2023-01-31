@@ -1,0 +1,8 @@
+#!/bin/bash
+path=~/file
+if [ -f $path ]
+then
+echo "File Exists"
+else
+echo "File Does not Exists"
+fi
