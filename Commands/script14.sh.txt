@@ -1,0 +1,20 @@
+#!/bin/bash
+dir1=/etc/yum
+dir2=/etc/apt
+dir3=/etc/pacman
+if [ -d $dir1 ]
+then
+sudo yum update
+echo "Fedora exists"
+elif [ -d $dir2 ]
+then
+sudo apt update
+sudo apt distro upgrade
+echo "arch exists"
+elif [ -d $dir3 ]
+then
+sudo pacman update
+echo "debian exists"
+else
+echo "No one is there"
+fi
