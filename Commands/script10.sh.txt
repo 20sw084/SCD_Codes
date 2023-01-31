@@ -1,0 +1,22 @@
+#!/bin/bash
+echo "Choose your favourite directory of linux"
+echo "1. Debian"
+echo "2. Mint"
+echo "3. Ubuntu"
+echo "4. Arch"
+echo "5. Kali"
+echo "6. CentOS"
+echo "7. POP-OS"
+
+read user_option
+
+case $user_option in 
+1) echo "Debian is nice" ;;
+2) echo "Mint is nice" ;;
+3) echo "Ubuntu is nice" ;;
+4) echo "Arch is nice" ;;
+5) echo "CentOS is nice" ;;
+6) echo "PopOS is nice" ;;
+7) echo "kali is nice" ;;
+*) echo "Invalid Option"
+esac
