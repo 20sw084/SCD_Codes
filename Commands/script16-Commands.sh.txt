@@ -1,0 +1,30 @@
+Last login: Tue Jan 31 05:03:53 2023 from ec2-3-112-23-5.ap-northeast-1.compute.amazonaws.com
+
+       __|  __|_  )
+       _|  (     /   Amazon Linux 2 AMI
+      ___|\___|___|
+
+https://aws.amazon.com/amazon-linux-2/
+[ec2-user@ip-172-31-37-134 ~]$ nano script6.sh
+[ec2-user@ip-172-31-37-134 ~]$ which at
+/usr/bin/at
+[ec2-user@ip-172-31-37-134 ~]$ date
+Tue Jan 31 05:43:25 UTC 2023
+[ec2-user@ip-172-31-37-134 ~]$ at 5:45 -f ./script6.sh
+job 1 at Tue Jan 31 05:45:00 2023
+[ec2-user@ip-172-31-37-134 ~]$ ls
+,   {dir1       dir2   {dir4  {dir7,  _p          script2.sh  script4.sh  script6.sh  test
+bm  {dir1dir2}  dir2}  dir5}  dir9}   script1.sh  script3.sh  script5.sh  sw
+[ec2-user@ip-172-31-37-134 ~]$ touch file1
+[ec2-user@ip-172-31-37-134 ~]$ cat > file1
+Hello File
+Hello User
+Hello Noobie
+[ec2-user@ip-172-31-37-134 ~]$ grep "Hello" file1
+Hello File
+Hello User
+Hello Noobie
+[ec2-user@ip-172-31-15-198 ~]$ crontab -e
+no crontab for ec2-user - using an empty one
+crontab: installing new crontab
+[ec2-user@ip-172-31-15-198 ~]$ 
