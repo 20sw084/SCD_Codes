@@ -56,3 +56,56 @@ Complete!
 
 3 directories, 5 files
 [root@ip-172-31-15-198 ec2-user]# 
+[root@ip-172-31-15-198 ec2-user]# yum remove tree
+Loaded plugins: extras_suggestions, langpacks, priorities, update-motd
+Resolving Dependencies
+--> Running transaction check
+---> Package tree.x86_64 0:1.6.0-10.amzn2.0.1 will be erased
+--> Finished Dependency Resolution
+
+Dependencies Resolved
+
+===============================================================================================================================================
+ Package                     Arch                          Version                                    Repository                          Size
+===============================================================================================================================================
+Removing:
+ tree                        x86_64                        1.6.0-10.amzn2.0.1                         @amzn2-core                         83 k
+
+Transaction Summary
+===============================================================================================================================================
+Remove  1 Package
+
+Installed size: 83 k
+Is this ok [y/N]: y
+Downloading packages:
+Running transaction check
+Running transaction test
+Transaction test succeeded
+Running transaction
+  Erasing    : tree-1.6.0-10.amzn2.0.1.x86_64                                                                                              1/1 
+  Verifying  : tree-1.6.0-10.amzn2.0.1.x86_64                                                                                              1/1 
+
+Removed:
+  tree.x86_64 0:1.6.0-10.amzn2.0.1                                                                                                             
+
+Complete!
+[root@ip-172-31-15-198 ec2-user]# ls
+file3  renFile  sw
+[root@ip-172-31-15-198 ec2-user]# touch file1 file2
+[root@ip-172-31-15-198 ec2-user]# chmod +x file1
+[root@ip-172-31-15-198 ec2-user]# ls
+file1  file2  file3  renFile  sw
+[root@ip-172-31-15-198 ec2-user]# ls -l file1
+-rwxr-xr-x 1 root root 0 Jan 31 14:44 file1
+[root@ip-172-31-15-198 ec2-user]# chmod +x file1
+[root@ip-172-31-15-198 ec2-user]# chmod 076 file1
+[root@ip-172-31-15-198 ec2-user]# ls -l file1
+----rwxrw- 1 root root 0 Jan 31 14:44 file1
+[root@ip-172-31-15-198 ec2-user]# echo "$SHELL"
+/bin/bash[root@ip-172-31-15-198 ec2-user]# nano script1.sh
+[root@ip-172-31-15-198 ec2-user]# chmod +x script1.sh
+[root@ip-172-31-15-198 ec2-user]# ./script1.sh
+Welcome to Bash Scripting
+Script is automatically executed commands/certain tasks. With extension .sh
+#!/bin/bash is called Sheebang which instructs OS that given below commands found at bash(Given Path).
+[root@ip-172-31-15-198 ec2-user]# 
