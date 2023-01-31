@@ -1,0 +1,28 @@
+#!/bin/bash
+name="Jonny"
+echo $name
+
+expr 1 + 2
+
+if [ $name = "Jonny" ]
+then
+echo "User Authenticated"
+elif [ $name != "Jonny" ]
+then
+echo "Not an Authorised User"
+else
+echo "Unknown Behaviour"
+fi
+
+number=5
+if [ $number -gt 2 ]
+then
+echo "Greater then 2"
+elif [ $number -eq 2 ]then
+echo "= to 2"
+elif [ $number -le 2 ]
+then
+echo "Less then/equal to 2"
+else
+echo "Unknown Behaviour"
+fi
