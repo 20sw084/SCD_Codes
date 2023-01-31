@@ -3,4 +3,56 @@ root@ip-172-31-15-198 ec2-user]# exit5-198 ec2-user]# yum update
 Loaded plugins: extras_suggestions, langpacks, priorities, update-motd
 amzn2-core                                                       | 3.7 kB  00:00:00     
 No packages marked for update
+[root@ip-172-31-15-198 ec2-user]# which python
+/bin/python
+[root@ip-172-31-15-198 ec2-user]# which tree
+/usr/bin/which: no tree in (/sbin:/bin:/usr/sbin:/usr/bin)
+[root@ip-172-31-15-198 ec2-user]# yum install tree
+Loaded plugins: extras_suggestions, langpacks, priorities, update-motd
+amzn2-core                                                       | 3.7 kB  00:00:00     
+Resolving Dependencies
+--> Running transaction check
+---> Package tree.x86_64 0:1.6.0-10.amzn2.0.1 will be installed
+--> Finished Dependency Resolution
+
+Dependencies Resolved
+
+========================================================================================
+ Package       Arch            Version                        Repository           Size
+========================================================================================
+Installing:
+ tree          x86_64          1.6.0-10.amzn2.0.1             amzn2-core           47 k
+
+Transaction Summary
+========================================================================================
+Install  1 Package
+
+Total download size: 47 k
+Installed size: 83 k
+Is this ok [y/d/N]: y
+Downloading packages:
+tree-1.6.0-10.amzn2.0.1.x86_64.rpm                               |  47 kB  00:00:00     
+Running transaction check
+Running transaction test
+Transaction test succeeded
+Running transaction
+  Installing : tree-1.6.0-10.amzn2.0.1.x86_64                                       1/1 
+  Verifying  : tree-1.6.0-10.amzn2.0.1.x86_64                                       1/1 
+
+Installed:
+  tree.x86_64 0:1.6.0-10.amzn2.0.1                                                      
+
+Complete!
+[root@ip-172-31-15-198 ec2-user]# tree
+.
+├── file3
+├── renFile
+└── sw
+    ├── 20SW
+    ├── 20SWW
+    ├── file2
+    ├── file3
+    └── muet
+
+3 directories, 5 files
 [root@ip-172-31-15-198 ec2-user]# 
