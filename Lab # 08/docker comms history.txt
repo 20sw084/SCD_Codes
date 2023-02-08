@@ -1,0 +1,16 @@
+sudo yum install -y docker
+ which docker
+docker --version
+service docker status
+docker images
+service docker start
+service docker status
+docker search ubuntu
+docker pull ubuntu
+docker ps -a // check all runing containers
+docker container run -i -t --name cont1 ubuntu /bin/bash // {-i // interactive -t  // terminal /bin/bash // To Run Container}
+docker container start cont1
+docker container attach cont1
+docker rm container1 // for container remove 
+docker rmi ubuntu fedora // multiple images delete
+exit // to exit from container

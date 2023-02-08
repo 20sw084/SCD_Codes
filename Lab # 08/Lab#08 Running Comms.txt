@@ -1,0 +1,149 @@
+[ec2-user@ip-172-31-15-198 ~]$ sudo su
+[root@ip-172-31-15-198 ec2-user]# sudo yum install -y docker
+Loaded plugins: extras_suggestions, langpacks, priorities, update-motd
+Resolving Dependencies
+--> Running transaction check
+---> Package docker.x86_64 0:20.10.17-1.amzn2.0.2 will be installed
+--> Finished Dependency Resolution
+
+Dependencies Resolved
+
+===============================================================================================================================================
+ Package                    Arch                       Version                                     Repository                             Size
+===============================================================================================================================================
+Installing:
+ docker                     x86_64                     20.10.17-1.amzn2.0.2                        amzn2extra-docker                      39 M
+
+Transaction Summary
+===============================================================================================================================================
+Install  1 Package
+
+Total download size: 39 M
+Installed size: 152 M
+Downloading packages:
+docker-20.10.17-1.amzn2.0.2.x86_64.rpm                                                                                  |  39 MB  00:00:00     
+Running transaction check
+Running transaction test
+Transaction test succeeded
+Running transaction
+  Installing : docker-20.10.17-1.amzn2.0.2.x86_64                                                                                          1/1 
+  Verifying  : docker-20.10.17-1.amzn2.0.2.x86_64                                                                                          1/1 
+
+Installed:
+  docker.x86_64 0:20.10.17-1.amzn2.0.2                                                                                                         
+
+Complete!
+[root@ip-172-31-15-198 ec2-user]# which docker
+/bin/docker
+[root@ip-172-31-15-198 ec2-user]# docker --version
+Docker version 20.10.17, build 100c701
+[root@ip-172-31-15-198 ec2-user]# service docker status
+Redirecting to /bin/systemctl status docker.service
+● docker.service - Docker Application Container Engine
+   Loaded: loaded (/usr/lib/systemd/system/docker.service; disabled; vendor preset: disabled)
+   Active: inactive (dead)
+     Docs: https://docs.docker.com
+[root@ip-172-31-15-198 ec2-user]# docker images
+Cannot connect to the Docker daemon at unix:///var/run/docker.sock. Is the docker daemon running?
+[root@ip-172-31-15-198 ec2-user]# service docker start
+Redirecting to /bin/systemctl start docker.service
+[ec2-user@ip-172-31-15-198 ~]$ service docker status
+Redirecting to /bin/systemctl status docker.service
+● docker.service - Docker Application Container Engine
+   Loaded: loaded (/usr/lib/systemd/system/docker.service; disabled; vendor preset: disabled)
+   Active: active (running) since Wed 2023-02-08 03:17:45 UTC; 7min ago
+     Docs: https://docs.docker.com
+  Process: 3870 ExecStartPre=/usr/libexec/docker/docker-setup-runtimes.sh (code=exited, status=0/SUCCESS)
+  Process: 3869 ExecStartPre=/bin/mkdir -p /run/docker (code=exited, status=0/SUCCESS)
+ Main PID: 3873 (dockerd)
+    Tasks: 7
+   Memory: 29.2M
+   CGroup: /system.slice/docker.service
+           └─3873 /usr/bin/dockerd -H fd:// --containerd=/run/containerd/containerd.sock --default-ulimit nofile=32768:65536
+
+Feb 08 03:17:45 ip-172-31-15-198.ap-northeast-1.compute.internal dockerd[3873]: time="2023-02-08T03:17:45.101528590Z" level=info msg="[g...ay2"
+Feb 08 03:17:45 ip-172-31-15-198.ap-northeast-1.compute.internal dockerd[3873]: time="2023-02-08T03:17:45.108502149Z" level=warning msg=...ght"
+Feb 08 03:17:45 ip-172-31-15-198.ap-northeast-1.compute.internal dockerd[3873]: time="2023-02-08T03:17:45.108881920Z" level=warning msg=...ice"
+Feb 08 03:17:45 ip-172-31-15-198.ap-northeast-1.compute.internal dockerd[3873]: time="2023-02-08T03:17:45.109358168Z" level=info msg="Lo...rt."
+Feb 08 03:17:45 ip-172-31-15-198.ap-northeast-1.compute.internal dockerd[3873]: time="2023-02-08T03:17:45.330675779Z" level=info msg="De...ess"
+Feb 08 03:17:45 ip-172-31-15-198.ap-northeast-1.compute.internal dockerd[3873]: time="2023-02-08T03:17:45.369902010Z" level=info msg="Lo...ne."
+Feb 08 03:17:45 ip-172-31-15-198.ap-northeast-1.compute.internal dockerd[3873]: time="2023-02-08T03:17:45.451216585Z" level=info msg="Do...0.17
+Feb 08 03:17:45 ip-172-31-15-198.ap-northeast-1.compute.internal dockerd[3873]: time="2023-02-08T03:17:45.451738492Z" level=info msg="Da...ion"
+Feb 08 03:17:45 ip-172-31-15-198.ap-northeast-1.compute.internal systemd[1]: Started Docker Application Container Engine.
+Feb 08 03:17:45 ip-172-31-15-198.ap-northeast-1.compute.internal dockerd[3873]: time="2023-02-08T03:17:45.470978900Z" level=info msg="AP...ock"
+Hint: Some lines were ellipsized, use -l to show in full.
+[ec2-user@ip-172-31-15-198 ~]$ sudo docker search ubuntu
+NAME                             DESCRIPTION                                     STARS     OFFICIAL   AUTOMATED
+ubuntu                           Ubuntu is a Debian-based Linux operating sys…   15554     [OK]       
+websphere-liberty                WebSphere Liberty multi-architecture images …   291       [OK]       
+ubuntu-upstart                   DEPRECATED, as is Upstart (find other proces…   112       [OK]       
+neurodebian                      NeuroDebian provides neuroscience research s…   98        [OK]       
+ubuntu/nginx                     Nginx, a high-performance reverse proxy & we…   75                   
+open-liberty                     Open Liberty multi-architecture images based…   56        [OK]       
+ubuntu/apache2                   Apache, a secure & extensible open-source HT…   53                   
+ubuntu-debootstrap               DEPRECATED; use "ubuntu" instead                50        [OK]       
+ubuntu/squid                     Squid is a caching proxy for the Web. Long-t…   50                   
+ubuntu/bind9                     BIND 9 is a very flexible, full-featured DNS…   45                   
+ubuntu/mysql                     MySQL open source fast, stable, multi-thread…   41                   
+ubuntu/prometheus                Prometheus is a systems and service monitori…   35                   
+ubuntu/postgres                  PostgreSQL is an open source object-relation…   23                   
+ubuntu/kafka                     Apache Kafka, a distributed event streaming …   22                   
+ubuntu/redis                     Redis, an open source key-value store. Long-…   16                   
+ubuntu/prometheus-alertmanager   Alertmanager handles client alerts from Prom…   8                    
+ubuntu/dotnet-deps               Chiselled Ubuntu for self-contained .NET & A…   6                    
+ubuntu/grafana                   Grafana, a feature rich metrics dashboard & …   6                    
+ubuntu/memcached                 Memcached, in-memory keyvalue store for smal…   5                    
+ubuntu/zookeeper                 ZooKeeper maintains configuration informatio…   5                    
+ubuntu/dotnet-runtime            Chiselled Ubuntu runtime image for .NET apps…   5                    
+ubuntu/telegraf                  Telegraf collects, processes, aggregates & w…   4                    
+ubuntu/cortex                    Cortex provides storage for Prometheus. Long…   3                    
+ubuntu/dotnet-aspnet             Chiselled Ubuntu runtime image for ASP.NET a…   3                    
+ubuntu/cassandra                 Cassandra, an open source NoSQL distributed …   2                    
+[ec2-user@ip-172-31-15-198 ~]$ sudo docker pull ubuntu
+Using default tag: latest
+latest: Pulling from library/ubuntu
+Digest: sha256:9a0bdde4188b896a372804be2384015e90e3f84906b750c1a53539b585fbbe7f
+Status: Image is up to date for ubuntu:latest
+docker.io/library/ubuntu:latest
+[ec2-user@ip-172-31-15-198 ~]$ sudo docker images
+REPOSITORY   TAG       IMAGE ID       CREATED       SIZE
+ubuntu       latest    58db3edaf2be   12 days ago   77.8MB
+[ec2-user@ip-172-31-15-198 ~]$ sudo docker ps
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+[ec2-user@ip-172-31-15-198 ~]$ sudo docker ps -a
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+[ec2-user@ip-172-31-15-198 ~]$ sudo docker run -it --name myContainer1 ubuntu bin/bash
+root@bae527d354a3:/# exit
+exit
+[ec2-user@ip-172-31-15-198 ~]$ sudo docker ps
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+[ec2-user@ip-172-31-15-198 ~]$ sudo docker ps -a
+CONTAINER ID   IMAGE     COMMAND      CREATED              STATUS                        PORTS     NAMES
+bae527d354a3   ubuntu    "bin/bash"   About a minute ago   Exited (127) 14 seconds ago             myContainer1
+[ec2-user@ip-172-31-15-198 ~]$ sudo docker container start myContainer1
+myContainer1
+[ec2-user@ip-172-31-15-198 ~]$ sudo docker ps
+CONTAINER ID   IMAGE     COMMAND      CREATED         STATUS         PORTS     NAMES
+bae527d354a3   ubuntu    "bin/bash"   5 minutes ago   Up 2 minutes             myContainer1
+[ec2-user@ip-172-31-15-198 ~]$ sudo docker stop myContainer1 
+myContainer1
+[ec2-user@ip-172-31-15-198 ~]$ sudo docker rm myContainer1
+myContainer1
+[ec2-user@ip-172-31-15-198 ~]$ sudo docker ps
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+[ec2-user@ip-172-31-15-198 ~]$ sudo docker ps -a
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+[ec2-user@ip-172-31-15-198 ~]$ sudo docker rmi ubuntu
+Untagged: ubuntu:latest
+Untagged: ubuntu@sha256:9a0bdde4188b896a372804be2384015e90e3f84906b750c1a53539b585fbbe7f
+Deleted: sha256:58db3edaf2be6e80f628796355b1bdeaf8bea1692b402f48b7e7b8d1ff100b02
+Deleted: sha256:c5ff2d88f67954bdcf1cfdd46fe3d683858d69c2cadd6660812edfc83726c654
+[ec2-user@ip-172-31-15-198 ~]$ sudo docker images
+REPOSITORY   TAG       IMAGE ID   CREATED   SIZE
+[root@ip-172-31-15-198 ec2-user]# docker container attach cont1
+You cannot attach to a stopped container, start it first
+[root@ip-172-31-15-198 ec2-user]# docker container start cont1
+cont1
+[root@ip-172-31-15-198 ec2-user]# docker container attach cont1
+root@d423f1a8fca8:/# exit
+exit
