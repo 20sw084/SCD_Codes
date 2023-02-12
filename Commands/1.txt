@@ -89,3 +89,4 @@ file3  renFile  sw
 [ec2-user@ip-172-31-15-198 ~]$ ls
 file3  renFile  sw
 [ec2-user@ip-172-31-15-198 ~]$ 
+ 
