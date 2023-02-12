@@ -26,11 +26,6 @@ dir1  dir2  dir3  file1  file2  file3  sw
 [root@ip-172-31-15-198 sw]# cd 20SW
 [root@ip-172-31-15-198 20SW]# cd ..
 [root@ip-172-31-15-198 sw]# cd ..
-[root@ip-172-31-15-198 ec2-user]# mkdor -p
-bash: mkdor: command not found
-[root@ip-172-31-15-198 ec2-user]# mkdir -p
-mkdir: missing operand
-Try 'mkdir --help' for more information.
 [root@ip-172-31-15-198 ec2-user]# cd sw
 [root@ip-172-31-15-198 sw]# cd 20SW
 [root@ip-172-31-15-198 20SW]# mkdir -p
