@@ -1,0 +1,302 @@
+Minikube System Requirements
+****************************
+Minimum 2 CPU’s or more    
+Minimum 2GB of free memory    
+Minimum 20GB of free disk space   
+Internet connection    
+Container or virtual machine manager, such as: Docker, Hyperkit, Hyper-V, KVM, Parallels, Podman, VirtualBox, or VMware Fusion/Workstation
+*******************************************************************************************************************************************
+
+Update the system packages on Ubuntu 22.04 LTS AWS EC2
+***************************************************************************
+sudo apt update
+
+
+**************************************
+#1.Install kubectl on Ubuntu 22.04 LTS
+***************************************
+
+curl -LO https://storage.googleapis.com/kubernetes-release/release/`curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt`/bin/linux/amd64/kubectl
+
+Make the kubectl binary executable
+
+chmod +x ./kubectl
+
+Move kubectl to /usr/local/bin/kubectl directory
+
+sudo mv ./kubectl /usr/local/bin/kubectl
+
+To check kubectl version on Ubuntu
+
+kubectl version
+Output:
+
+Client Version: version.Info{Major:"1", Minor:"22", GitVersion:"v1.22.4", GitCommit:"b695d79d4f967c403a96986f1750a35eb75e75f1", GitTreeState:"clean", BuildDate:"2021-11-17T15:48:33Z", GoVersion:"go1.16.10", Compiler:"gc", Platform:"linux/amd64"}
+
+*************************************
+#2.Install Docker on Ubuntu 22.04 LTS
+*************************************
+
+Install below packages before installing docker, you can use official docker site
+
+sudo apt-get install  ca-certificates curl gnupg lsb-release
+
+Add Docker official GPG Key
+
+sudo mkdir -p /etc/apt/keyrings
+
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+
+Setup Docker repository using below command
+
+echo \
+  "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
+  $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+
+Update the package to take effect
+
+sudo apt-get update
+
+Install Docker on Ubuntu 22.04 LTS using below command
+
+sudo apt-get install docker-ce docker-ce-cli containerd.io docker-compose-plugin
+
+To check docker service status on Ubuntu
+
+sudo systemctl status docker
+
+Create group named docker
+
+sudo groupadd docker
+
+Configure to Run docker without sudo permission
+
+sudo usermod -aG docker $USER && newgrp docker
+
+To enable docker service at system startup
+
+sudo systemctl enable docker
+
+To check status of docker service
+
+sudo systemctl status docker
+
+To start/stop docker service
+
+sudo systemctl start/stop docker
+
+******************************************
+3.Install cri-dockerd on Ubuntu 22.04 LTS
+*******************************************
+The default network plugin for cri-dockerd is set to cni on Linux/Ubuntu for new Kubernetes version as you can follow GitHub Official repo for same
+
+Clone the below git repo
+
+git clone https://github.com/Mirantis/cri-dockerd.git
+
+
+To install, on a Linux system that uses systemd, and already has Docker Engine installed
+
+wget https://storage.googleapis.com/golang/getgo/installer_linux
+chmod +x ./installer_linux
+./installer_linux
+source ~/.bash_profile
+cd cri-dockerd
+mkdir bin
+go build -o bin/cri-dockerd
+
+Note: Please wait above command takes some time to complete.
+
+sudo mkdir -p /usr/local/bin
+sudo install -o root -g root -m 0755 bin/cri-dockerd /usr/local/bin/cri-dockerd
+sudo cp -a packaging/systemd/* /etc/systemd/system
+sudo sed -i -e 's,/usr/bin/cri-dockerd,/usr/local/bin/cri-dockerd,' /etc/systemd/system/cri-docker.service
+sudo systemctl daemon-reload
+sudo systemctl enable cri-docker.service
+sudo systemctl enable --now cri-docker.socket
+
+************************************************
+#4.Install conntrack package on Ubuntu 22.04 LTS
+************************************************
+
+Install conntrack using apt for minikube on Ubuntu 22.04 LTS
+
+sudo apt-get install -y conntrack
+
+**********************************************
+#5.Install crictl package on Ubuntu 22.04 LTS
+**********************************************
+
+Install crictl: CLI for kubelet CRI on Ubuntu using below commands follow official crictl GitHub page
+
+VERSION="v1.24.2"
+wget https://github.com/kubernetes-sigs/cri-tools/releases/download/$VERSION/crictl-$VERSION-linux-amd64.tar.gz
+sudo tar zxvf crictl-$VERSION-linux-amd64.tar.gz -C /usr/local/bin
+rm -f crictl-$VERSION-linux-amd64.tar.gz
+
+****************************************************
+#6.Download and Install Minikube on Ubuntu 22.04 LTS
+****************************************************
+
+Download and Install Minikube on Ubuntu 22.04 LTS using below commands, To download latest minikube setup refer minikube official download page
+
+curl -Lo minikube https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
+
+Make the minikube binary executable
+
+chmod +x minikube
+
+Move minikube to /usr/local/bin/kubectl directory
+
+sudo mv minikube /usr/local/bin/
+
+OR
+
+You can use below command to download latest minikube
+
+curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
+
+Install Minikube on Ubuntu 22.04 LTS AWS EC2
+
+sudo install minikube-linux-amd64 /usr/local/bin/minikube
+
+To check minikube version on ubuntu
+
+minikube version
+
+Output:
+
+minikube version: v1.24.0
+commit: 76b94fb3c4e8ac5062daf70d60cf03ddcc0a741b
+Start the minikube Kubernetes cluster on Ubuntu with calico network plugin
+
+minikube start --network-plugin=cni --cni=calico
+
+minikube start --network-plugin=cni --cni=calico --wait=false
+
+
+If Error:
+
+minikube v1.29.0 on Ubuntu 22.04 (xen/amd64)
+
+Using the none driver based on user configuration
+X Exiting due to GUEST_MISSING_CONNTRACK: Sorry, Kubernetes 1.22.3 requires conntrack to be installed in root's path
+
+
+Solution:
+
+sudo apt-get install -y conntrack
+
+Now start the minikube on Ubuntu
+
+minikube start --network-plugin=cni --cni=calico
+
+To Check the status of Minikube
+
+minikube status
+
+Output:
+
+ubuntu@ip-172-31-36-57:~$ minikube status
+minikube
+type: Control Plane
+host: Running
+kubelet: Running
+apiserver: Running
+kubeconfig: Configured
+
+To check Minikube cluster information
+
+kubectl cluster-info
+
+Output:
+
+Kubernetes control plane is running at https://192.168.49.2:8443
+CoreDNS is running at https://192.168.49.2:8443/api/v1/namespaces/kube-system/services/kube-dns:dns/proxy
+
+To further debug and diagnose cluster problems, use 'kubectl cluster-info dump'.
+
+To check minikube cluster status
+
+kubectl get nodes
+
+
+
+
+
+
+*********************************************************************************
+vi pod1.yml
+*********************************************************************************
+kind: Pod                              
+apiVersion: v1                     
+metadata:                           
+  name: testpod                  
+spec:                                    
+  containers:                      
+    - name: c00                     
+      image: ubuntu              
+      command: ["/bin/bash", "-c", "while true; do echo Hello-World; sleep 5 ; done"]
+  restartPolicy: Never         # Default Always
+**************************************************************************************
+kubectl apply -f pod1.yml
+**************************************************************************************
+
+kubectl get pods
+
+kubectl describe pod testpod
+
+kubectl logs -f testpod
+
+kubectl exec testpod1 -lt -c container1 /bin/bash
+
+kubectl delete pod testpod1
+
+************************************************************************************************************************************
+
+MULTI CONTAINER POD ENVIRONMENT 
+
+kind: Pod
+apiVersion: v1
+metadata:
+  name: testpod3
+spec:
+  containers:
+    - name: c00
+      image: ubuntu
+      command: ["/bin/bash", "-c", "while true; do echo Kubernetes; sleep 5 ; done"]
+    - name: c01
+      image: ubuntu
+      command: ["/bin/bash", "-c", "while true; do echo K8s You are love; sleep 5 ; done"]
+
+
+*********************************************************************************************************************************
+POD ENVIRONMENT  VARIABLES
+
+
+kind: Pod
+apiVersion: v1
+metadata:
+  name: environments
+spec:
+  containers:
+    - name: c00
+      image: ubuntu
+      command: ["/bin/bash", "-c", "while true; do echo Hello-world; sleep 5 ; done"]
+      env:                        # List of environment variables to be used inside the pod
+      - name: MYNAME
+        value: Software
+
+************************************************************************************************************************************
+POD WITH PORTS
+
+kind: Pod
+apiVersion: v1
+metadata:
+  name: testpod4
+spec:
+  containers:
+    - name: c00
+      image: httpd
+      ports:
+       - containerPort: 80  

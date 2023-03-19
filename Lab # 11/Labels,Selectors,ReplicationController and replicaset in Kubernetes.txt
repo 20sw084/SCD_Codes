@@ -1,0 +1,83 @@
+EXAMPLE OF LABELS
+
+
+kind: Pod
+apiVersion: v1
+metadata:
+  name: mypod
+  labels:                                                   
+    env: development
+    class: pods
+spec:
+    containers:
+       - name: mycontainer1
+         image: ubuntu
+         command: ["/bin/bash", "-c", "while true; do echo Hello-World; sleep 5 ; done"]
+
+
+
+***************************************************************************
+NODE SELECTOR EXAMPLE
+
+kind: Pod
+apiVersion: v1
+metadata:
+  name: nodelabels
+  labels:
+    env: development
+spec:
+    containers:
+       - name: mycontainer1
+         image: ubuntu
+         command: ["/bin/bash", "-c", "while true; do echo Hello-World; sleep 5 ; done"]
+    nodeSelector:                                         
+       hardware: t2-medium
+*****************************************************************************************************
+EXAMPLE OF REPLICATION CONTROLLER
+
+kind: ReplicationController               
+apiVersion: v1
+metadata:
+  name: myreplica
+spec:
+  replicas: 2            
+  selector:        
+    myname: Zubair Sangi                             
+  template:                
+    metadata:
+      name: testpod6
+      labels:            
+        myname: Zubair
+    spec:
+     containers:
+       - name: mycontainer1
+         image: ubuntu
+         command: ["/bin/bash", "-c", "while true; do echo Hello-World; sleep 5 ; done"]
+
+
+****************************************************************************************************************
+EXAMPLE OF REPLICA SET
+
+
+kind: ReplicaSet                                    
+apiVersion: apps/v1                            
+metadata:
+  name: myrs
+spec:
+  replicas: 2  
+  selector:                  
+    matchExpressions:                             # these must match the labels
+      - {key: myname, operator: In, values: [Bhupinder, Bupinder, Bhopendra]}
+      - {key: env, operator: NotIn, values: [production]}
+  template:      
+    metadata:
+      name: testpod7
+      labels:              
+        myname: Zubair
+    spec:
+     containers:
+       - name: c00
+         image: ubuntu
+         command: ["/bin/bash", "-c", "while true; do echo Hello world; sleep 5 ; done"]
+
+**************************************END*****************************
