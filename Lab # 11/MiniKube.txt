@@ -1,6 +1,6 @@
 Minikube System Requirements
 ****************************
-Minimum 2 CPU’s or more    
+Minimum 2 CPUâ€™s or more    
 Minimum 2GB of free memory    
 Minimum 20GB of free disk space   
 Internet connection    
@@ -248,7 +248,7 @@ kubectl describe pod testpod
 
 kubectl logs -f testpod
 
-kubectl exec testpod1 -lt -c container1 /bin/bash
+kubectl exec testpod1 -it -c container1 /bin/bash
 
 kubectl delete pod testpod1
 
