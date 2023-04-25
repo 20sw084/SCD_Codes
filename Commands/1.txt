@@ -1,4 +1,4 @@
-[ec2-user@ip-172-31-15-198 ~]$ sudo su  
+[ec2-user@ip-172-31-15-198 ~]$ sudo su   
 [root@ip-172-31-15-198 ec2-user]# exit
 exit
 [ec2-user@ip-172-31-15-198 ~]$ mkdir dir1
