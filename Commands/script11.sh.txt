@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash 
 my_var=0
 while [ $my_var -le 10 ]
 do
